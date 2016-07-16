@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="leadlovers">
+<head>
+    <meta charset="UTF-8">
+    <title>User - User Management</title>
+    <link rel="stylesheet" href="lib/angular-material.min.css">
+
+    <link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="index.css">   
+</head>
+<body ng-controller="userCtrl as ctrl">
+<section id="content-container" layout="column">    
+    <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="main-left">
+        <md-toolbar layout="row" class="md-primary">
+            <div class="md-toolbar-tools md-whiteframe-z1">
+                <h3>Menu Principal</h3>
+                <span flex></span> 
+                <md-button class="md-icon-button" aria-label="Fechar Menu" ng-click="closeMainLeft()">
+                <md-tooltip>Fechar</md-tooltip>
+                <md-icon class="md-default-theme" class="material-icons">&#xE5CD;</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar> 
+            <md-list>
+                <md-list-item>
+                    <md-icon class="md-default-theme" class="material-icons">&#xE0C9;</md-icon>
+                    <p>Dashboard</p>                    
+                    <div class="md-secondary">2</div>
+                </md-list-item>
+                <md-list-item>
+                    <md-icon class="md-default-theme" class="material-icons">&#xE878;</md-icon>
+                    <p>Máquinas</p>
+                </md-list-item>
+                <md-list-item>
+                    <md-icon class="md-default-theme" class="material-icons">&#xE251;</md-icon>
+                    <p>Leads</p>
+                </md-list-item>     
+                <md-list-item>
+                    <md-icon class="md-default-theme" class="material-icons">&#xE7F9;</md-icon>
+                    <p>Broadcast</p>
+                </md-list-item>
+                <md-divider></md-divider>
+                <md-subheader class="md-no-sticky">Ferramentas</md-subheader>
+                <md-list-item>
+                    <md-icon class="md-default-theme" class="material-icons">&#xE1BC;</md-icon>
+                    <p>VSL</p>
+                </md-list-item>
+            </md-list>
+    </md-sidenav>
+    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="main-right">
+        <md-content>
+            content
+        </md-content>
+    </md-sidenav>  
+    <md-toolbar layout="row" class="md-menu-toolbar md-medium-tall md-whiteframe-4dp">
+        <div layout="row" flex layout-align="start center">
+            <div layout="row" layout-align="start center" flex>
+                <md-button class="menu" ng-click="toggleMainLeft()">
+                    <md-icon class="material-icons">menu</md-icon>
+                </md-button>
+                <md-shortcuts class="md-shortcuts">                
+                    <div class="shortcuts-container" layout="row" layout-align="space-between center">
+                        <div layout="row" class="shortcuts" layout-align="center center" flex>  
+                            <md-button class="md-icon-button">
+                                <md-tooltip md-direction="bottom">
+                                    Início
+                                </md-tooltip>
+                                <md-icon class="material-icons">dashboard</md-icon>
+                            </md-button>    
+                            <md-button class="md-icon-button">
+                                <md-tooltip md-direction="bottom">
+                                    Páginas
+                                </md-tooltip>
+                                <md-icon class="material-icons">pages</md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button">
+                                <md-tooltip md-direction="bottom">
+                                    Arquivos
+                                </md-tooltip>
+                                <md-icon class="material-icons">perm_media</md-icon>
+                            </md-button>                                
+                            <md-button class="md-icon-button">
+                                <md-tooltip md-direction="bottom">
+                                    Equipes
+                                </md-tooltip>
+                                <md-icon class="material-icons">group_work</md-icon>
+                            </md-button>
+                            <md-menu md-offset="8 56">
+                                <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                                    <md-tooltip md-direction="bottom">
+                                        Adicionar Novo Favorito
+                                    </md-tooltip>
+                                    <md-icon md-menu-origin class="material-icons">start</md-icon>
+                                </md-button>
+                                <md-menu-content width="4">
+                                   <md-menu-item>   
+                                        <md-input-container layout-padding md-no-float>
+                                            <md-icon class="material-icons md-primary">search</md-icon> 
+                                            <input placeholder="pesquisar" style="border: none">
+                                        </md-input-container>
+                                   </md-menu-item>
+                                    <md-menu-divider></md-menu-divider>
+                                    <md-menu-item>
+                                        <md-button>                                            
+                                            <div layout="row" flex>
+                                                <md-icon class="material-icons">group_work</md-icon>  
+                                                <p flex>Equipes</p>    
+                                                <md-icon class="material-icons" style="margin: auto 3px auto 0;">close</md-icon>  
+                                            </div>                                      
+                                        </md-button>                                          
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button>
+                                            <div layout="row" flex>
+                                                <md-icon class="material-icons">chat</md-icon>  
+                                                <p flex>Chat</p>    
+                                                <md-icon class="material-icons" style="margin: auto 3px auto 0;">add</md-icon>  
+                                            </div>
+                                        </md-button>  
+                                    </md-menu-item>                                    
+                                    <md-menu-item>
+                                        <md-button>                                            
+                                            <div layout="row" flex>
+                                                <md-icon class="material-icons">settings</md-icon>  
+                                                <p flex>Configurações</p>    
+                                                <md-icon class="material-icons" style="margin: auto 3px auto 0;">add</md-icon>  
+                                            </div>                                      
+                                        </md-button>                                          
+                                    </md-menu-item>                                    
+                                </md-menu-content>
+                            </md-menu>
+                        </div>
+                    </div>
+                </md-shortcuts>
+            </div>
+        </div>
+        <div layout="column" flex layout-align="center center">
+            <h3>leadlovers</h3>
+        </div>
+        <div layout="row" flex layout-align="end center">            
+            <md-button class="md-icon-button" aria-label="Configurações">
+                <md-tooltip>Configurações</md-tooltip>
+               <md-icon class="md-default-theme" class="material-icons">&#xE8B8;</md-icon>               
+            </md-button>
+            <md-button class="menu" ng-click="toggleMainRight()">
+                <md-icon class="material-icons">toc</md-icon>
+            </md-button>
+        </div>  
+    </md-toolbar>
+    <md-content flex>  
+        <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="toolbar-tools">
+            <md-content>
+                <md-toolbar md-scroll-shrink="true" layout="row" class="md-primary">
+                    <div class="md-toolbar-tools md-whiteframe-z1">
+                        <md-icon class="material-icons">person_outline</md-icon>
+                        <span flex></span> 
+                        <h3>Users Managment</h3>
+                        <span flex></span> 
+                        <md-button class="md-icon-button" aria-label="Fechar Menu" ng-click="closeToolbarTools()">
+                        <md-tooltip>Fechar</md-tooltip>
+                        <md-icon class="md-default-theme" class="material-icons">&#xE5CD;</md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar> 
+            <md-list>
+                <md-list-item>
+                    <md-icon class="material-icons"><i class="material-icons">person_add</i></md-icon>
+                    <p>Users Management</p>                    
+                    <div class="md-secondary">13</div>
+                </md-list-item>
+                <md-list-item>
+                    <md-icon class="material-icons">group_add</md-icon>
+                    <p>Team Management</p>
+                    <div class="md-secondary">5</div>
+                </md-list-item>                
+            </md-list>
+            </md-content>
+        </md-sidenav>   
+        <md-toolbar layout="row" class="md-background md-hue-1 md-whiteframe-4dp fix-top">
+            <div class="md-toolbar-tools">
+                <md-button class="menu" ng-click="toggleToolbarTools()">
+                    <md-icon class="material-icons">menu</md-icon>
+                </md-button>
+                <div class="breadcrumb">
+                    Users <md-icon class="material-icons">keyboard_arrow_right</md-icon> <small>Users Managment</small>
+                </div>
+                <span flex></span>
+                <div layout="column" style="margin-top: 30px">               
+                    <md-input-container class="md-block">
+                        <md-icon class="material-icons">search</md-icon> 
+                        <input placeholder="pesquisar">
+                    </md-input-container>
+                </div>
+            </div>            
+        </md-toolbar>
+        <md-grid-list md-cols-gt-lg="10" md-cols-md="4" md-cols-gt-md="6"
+        md-row-height-gt-md="4:3" md-row-height-md="16:9" md-row-height-gt-lg="1:1"
+        md-gutter="12px">
+            <md-grid-tile md-rowspan="2" md-colspan="2" md-rowspan-md="2">       
+                <div layout="column">
+                    <md-card>         
+                        <md-card-header>
+                            <md-card-avatar>
+                                <md-icon class="material-icons">mail</md-icon>
+                            </md-card-avatar>
+                            <span class="md-title" flex layout-padding>israel@leadlovers.com</span>
+                            <md-card-icon-actions layout-align="end center">
+                                <md-menu md-offset="-5 40" md-position-mode="target-right target">
+                                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">          
+                                            <md-icon md-menu-origin class="material-icons">more_vert</md-icon>
+                                        </md-button>
+                                        <md-menu-content width="3">                                   
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">mode_edit</md-icon>  
+                                                        <p flex>Editar</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">chat</md-icon>  
+                                                        <p flex>Enviar Mensagem</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-divider></md-divider>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">delete</md-icon>  
+                                                        <p flex>Excluir</p>   
+                                                    </div>                                      
+                                                </md-button>  
+                                            </md-menu-item>              
+                                        </md-menu-content>
+                                    </md-menu>
+                            </md-card-icon-actions>
+                        </md-card-header>
+                        <md-card-title>   
+                          <div class="blur" style="background: url('http://placekitten.com/300/300') center center no-repeat; background-size: cover;"></div>              
+                            <md-card-header layout="column" layout-align="center center">
+                                <md-card-avatar>
+                                    <img class="md-user-avatar" src="http://placekitten.com/300/300">
+                                </md-card-avatar>
+                                <md-card-header-text flex layout-align="center center">
+                                <span class="md-headline">Israel Oliveira</span>
+                                <span class="md-title">UX Designer</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="start center">
+                            <md-chips>
+                                <md-chip>UX Team Designers</md-chip>                                            
+                            </md-chips>
+                            <md-card-icon-actions layout="row">
+                                <md-button class="menu" layout-align="end center" flex>
+                                    <md-icon class="material-icons">add_box</md-icon>
+                                </md-button>
+                                <md-switch flex layout-align="end center">                   
+                                </md-switch>
+                            </md-card-icon-actions>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </md-grid-tile>
+            <md-grid-tile md-rowspan="2" md-colspan="2" md-rowspan-md="2">       
+                <div layout="column">
+                    <md-card>         
+                        <md-card-header>
+                            <md-card-avatar>
+                                <md-icon class="material-icons">mail</md-icon>
+                            </md-card-avatar>
+                            <span class="md-title" flex layout-padding>israel@leadlovers.com</span>
+                            <md-card-icon-actions layout-align="end center">
+                                <md-menu md-offset="-5 40" md-position-mode="target-right target">
+                                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">          
+                                            <md-icon md-menu-origin class="material-icons">more_vert</md-icon>
+                                        </md-button>
+                                        <md-menu-content width="3">                                   
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">mode_edit</md-icon>  
+                                                        <p flex>Editar</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">chat</md-icon>  
+                                                        <p flex>Enviar Mensagem</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-divider></md-divider>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">delete</md-icon>  
+                                                        <p flex>Excluir</p>   
+                                                    </div>                                      
+                                                </md-button>  
+                                            </md-menu-item>              
+                                        </md-menu-content>
+                                    </md-menu>
+                            </md-card-icon-actions>
+                        </md-card-header>
+                        <md-card-title>   
+                          <div class="blur" style="background: url('http://placekitten.com/300/300') center center no-repeat; background-size: cover;"></div>              
+                            <md-card-header layout="column" layout-align="center center">
+                                <md-card-avatar>
+                                    <img class="md-user-avatar" src="http://placekitten.com/300/300">
+                                </md-card-avatar>
+                                <md-card-header-text flex layout-align="center center">
+                                <span class="md-headline">Israel Oliveira</span>
+                                <span class="md-title">UX Designer</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="start center">
+                            <md-chips>
+                                <md-chip>UX Team Designers</md-chip>                                            
+                            </md-chips>
+                            <md-card-icon-actions layout="row">
+                                <md-button class="menu" layout-align="end center" flex>
+                                    <md-icon class="material-icons">add_box</md-icon>
+                                </md-button>
+                                <md-switch flex layout-align="end center">                   
+                                </md-switch>
+                            </md-card-icon-actions>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </md-grid-tile>  
+            <md-grid-tile md-rowspan="2" md-colspan="2" md-rowspan-md="2">       
+                <div layout="column">
+                    <md-card>         
+                        <md-card-header>
+                            <md-card-avatar>
+                                <md-icon class="material-icons">mail</md-icon>
+                            </md-card-avatar>
+                            <span class="md-title" flex layout-padding>israel@leadlovers.com</span>
+                            <md-card-icon-actions layout-align="end center">
+                                <md-menu md-offset="-5 40" md-position-mode="target-right target">
+                                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">          
+                                            <md-icon md-menu-origin class="material-icons">more_vert</md-icon>
+                                        </md-button>
+                                        <md-menu-content width="3">                                   
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">mode_edit</md-icon>  
+                                                        <p flex>Editar</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">chat</md-icon>  
+                                                        <p flex>Enviar Mensagem</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-divider></md-divider>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">delete</md-icon>  
+                                                        <p flex>Excluir</p>   
+                                                    </div>                                      
+                                                </md-button>  
+                                            </md-menu-item>              
+                                        </md-menu-content>
+                                    </md-menu>
+                            </md-card-icon-actions>
+                        </md-card-header>
+                        <md-card-title>   
+                          <div class="blur" style="background: url('http://placekitten.com/300/300') center center no-repeat; background-size: cover;"></div>              
+                            <md-card-header layout="column" layout-align="center center">
+                                <md-card-avatar>
+                                    <img class="md-user-avatar" src="http://placekitten.com/300/300">
+                                </md-card-avatar>
+                                <md-card-header-text flex layout-align="center center">
+                                <span class="md-headline">Israel Oliveira</span>
+                                <span class="md-title">UX Designer</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="start center">
+                            <md-chips>
+                                <md-chip>UX Team Designers</md-chip>                                            
+                            </md-chips>
+                            <md-card-icon-actions layout="row">
+                                <md-button class="menu" layout-align="end center" flex>
+                                    <md-icon class="material-icons">add_box</md-icon>
+                                </md-button>
+                                <md-switch flex layout-align="end center">                   
+                                </md-switch>
+                            </md-card-icon-actions>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </md-grid-tile>  
+            <md-grid-tile md-rowspan="2" md-colspan="2" md-rowspan-md="2">       
+                <div layout="column">
+                    <md-card>         
+                        <md-card-header>
+                            <md-card-avatar>
+                                <md-icon class="material-icons">mail</md-icon>
+                            </md-card-avatar>
+                            <span class="md-title" flex layout-padding>israel@leadlovers.com</span>
+                            <md-card-icon-actions layout-align="end center">
+                                <md-menu md-offset="-5 40" md-position-mode="target-right target">
+                                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">          
+                                            <md-icon md-menu-origin class="material-icons">more_vert</md-icon>
+                                        </md-button>
+                                        <md-menu-content width="3">                                   
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">mode_edit</md-icon>  
+                                                        <p flex>Editar</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">chat</md-icon>  
+                                                        <p flex>Enviar Mensagem</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-divider></md-divider>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">delete</md-icon>  
+                                                        <p flex>Excluir</p>   
+                                                    </div>                                      
+                                                </md-button>  
+                                            </md-menu-item>              
+                                        </md-menu-content>
+                                    </md-menu>
+                            </md-card-icon-actions>
+                        </md-card-header>
+                        <md-card-title>   
+                          <div class="blur" style="background: url('http://placekitten.com/300/300') center center no-repeat; background-size: cover;"></div>              
+                            <md-card-header layout="column" layout-align="center center">
+                                <md-card-avatar>
+                                    <img class="md-user-avatar" src="http://placekitten.com/300/300">
+                                </md-card-avatar>
+                                <md-card-header-text flex layout-align="center center">
+                                <span class="md-headline">Israel Oliveira</span>
+                                <span class="md-title">UX Designer</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="start center">
+                            <md-chips>
+                                <md-chip>UX Team Designers</md-chip>                                            
+                            </md-chips>
+                            <md-card-icon-actions layout="row">
+                                <md-button class="menu" layout-align="end center" flex>
+                                    <md-icon class="material-icons">add_box</md-icon>
+                                </md-button>
+                                <md-switch flex layout-align="end center">                   
+                                </md-switch>
+                            </md-card-icon-actions>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </md-grid-tile>  
+            <md-grid-tile md-rowspan="2" md-colspan="2" md-rowspan-md="2">       
+                <div layout="column">
+                    <md-card>         
+                        <md-card-header>
+                            <md-card-avatar>
+                                <md-icon class="material-icons">mail</md-icon>
+                            </md-card-avatar>
+                            <span class="md-title" flex layout-padding>israel@leadlovers.com</span>
+                            <md-card-icon-actions layout-align="end center">
+                                <md-menu md-offset="-5 40" md-position-mode="target-right target">
+                                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">          
+                                            <md-icon md-menu-origin class="material-icons">more_vert</md-icon>
+                                        </md-button>
+                                        <md-menu-content width="3">                                   
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">mode_edit</md-icon>  
+                                                        <p flex>Editar</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">chat</md-icon>  
+                                                        <p flex>Enviar Mensagem</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-divider></md-divider>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">delete</md-icon>  
+                                                        <p flex>Excluir</p>   
+                                                    </div>                                      
+                                                </md-button>  
+                                            </md-menu-item>              
+                                        </md-menu-content>
+                                    </md-menu>
+                            </md-card-icon-actions>
+                        </md-card-header>
+                        <md-card-title>   
+                          <div class="blur" style="background: url('http://placekitten.com/300/300') center center no-repeat; background-size: cover;"></div>              
+                            <md-card-header layout="column" layout-align="center center">
+                                <md-card-avatar>
+                                    <img class="md-user-avatar" src="http://placekitten.com/300/300">
+                                </md-card-avatar>
+                                <md-card-header-text flex layout-align="center center">
+                                <span class="md-headline">Israel Oliveira</span>
+                                <span class="md-title">UX Designer</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="start center">
+                            <md-chips>
+                                <md-chip>UX Team Designers</md-chip>                                            
+                            </md-chips>
+                            <md-card-icon-actions layout="row">
+                                <md-button class="menu" layout-align="end center" flex>
+                                    <md-icon class="material-icons">add_box</md-icon>
+                                </md-button>
+                                <md-switch flex layout-align="end center">                   
+                                </md-switch>
+                            </md-card-icon-actions>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </md-grid-tile>  
+            <md-grid-tile md-rowspan="2" md-colspan="2" md-rowspan-md="2">       
+                <div layout="column">
+                    <md-card>         
+                        <md-card-header>
+                            <md-card-avatar>
+                                <md-icon class="material-icons">mail</md-icon>
+                            </md-card-avatar>
+                            <span class="md-title" flex layout-padding>israel@leadlovers.com</span>
+                            <md-card-icon-actions layout-align="end center">
+                                <md-menu md-offset="-5 40" md-position-mode="target-right target">
+                                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">          
+                                            <md-icon md-menu-origin class="material-icons">more_vert</md-icon>
+                                        </md-button>
+                                        <md-menu-content width="3">                                   
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">mode_edit</md-icon>  
+                                                        <p flex>Editar</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">chat</md-icon>  
+                                                        <p flex>Enviar Mensagem</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-divider></md-divider>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">delete</md-icon>  
+                                                        <p flex>Excluir</p>   
+                                                    </div>                                      
+                                                </md-button>  
+                                            </md-menu-item>              
+                                        </md-menu-content>
+                                    </md-menu>
+                            </md-card-icon-actions>
+                        </md-card-header>
+                        <md-card-title>   
+                          <div class="blur" style="background: url('http://placekitten.com/300/300') center center no-repeat; background-size: cover;"></div>              
+                            <md-card-header layout="column" layout-align="center center">
+                                <md-card-avatar>
+                                    <img class="md-user-avatar" src="http://placekitten.com/300/300">
+                                </md-card-avatar>
+                                <md-card-header-text flex layout-align="center center">
+                                <span class="md-headline">Israel Oliveira</span>
+                                <span class="md-title">UX Designer</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="start center">
+                            <md-chips>
+                                <md-chip>UX Team Designers</md-chip>                                            
+                            </md-chips>
+                            <md-card-icon-actions layout="row">
+                                <md-button class="menu" layout-align="end center" flex>
+                                    <md-icon class="material-icons">add_box</md-icon>
+                                </md-button>
+                                <md-switch flex layout-align="end center">                   
+                                </md-switch>
+                            </md-card-icon-actions>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </md-grid-tile>  
+            <md-grid-tile md-rowspan="2" md-colspan="2" md-rowspan-md="2">       
+                <div layout="column">
+                    <md-card>         
+                        <md-card-header>
+                            <md-card-avatar>
+                                <md-icon class="material-icons">mail</md-icon>
+                            </md-card-avatar>
+                            <span class="md-title" flex layout-padding>israel@leadlovers.com</span>
+                            <md-card-icon-actions layout-align="end center">
+                                <md-menu md-offset="-5 40" md-position-mode="target-right target">
+                                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">          
+                                            <md-icon md-menu-origin class="material-icons">more_vert</md-icon>
+                                        </md-button>
+                                        <md-menu-content width="3">                                   
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">mode_edit</md-icon>  
+                                                        <p flex>Editar</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">chat</md-icon>  
+                                                        <p flex>Enviar Mensagem</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-divider></md-divider>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">delete</md-icon>  
+                                                        <p flex>Excluir</p>   
+                                                    </div>                                      
+                                                </md-button>  
+                                            </md-menu-item>              
+                                        </md-menu-content>
+                                    </md-menu>
+                            </md-card-icon-actions>
+                        </md-card-header>
+                        <md-card-title>   
+                          <div class="blur" style="background: url('http://placekitten.com/300/300') center center no-repeat; background-size: cover;"></div>              
+                            <md-card-header layout="column" layout-align="center center">
+                                <md-card-avatar>
+                                    <img class="md-user-avatar" src="http://placekitten.com/300/300">
+                                </md-card-avatar>
+                                <md-card-header-text flex layout-align="center center">
+                                <span class="md-headline">Israel Oliveira</span>
+                                <span class="md-title">UX Designer</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="start center">
+                            <md-chips>
+                                <md-chip>UX Team Designers</md-chip>                                            
+                            </md-chips>
+                            <md-card-icon-actions layout="row">
+                                <md-button class="menu" layout-align="end center" flex>
+                                    <md-icon class="material-icons">add_box</md-icon>
+                                </md-button>
+                                <md-switch flex layout-align="end center">                   
+                                </md-switch>
+                            </md-card-icon-actions>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </md-grid-tile>  
+            <md-grid-tile md-rowspan="2" md-colspan="2" md-rowspan-md="2">       
+                <div layout="column">
+                    <md-card>         
+                        <md-card-header>
+                            <md-card-avatar>
+                                <md-icon class="material-icons">mail</md-icon>
+                            </md-card-avatar>
+                            <span class="md-title" flex layout-padding>israel@leadlovers.com</span>
+                            <md-card-icon-actions layout-align="end center">
+                                <md-menu md-offset="-5 40" md-position-mode="target-right target">
+                                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">          
+                                            <md-icon md-menu-origin class="material-icons">more_vert</md-icon>
+                                        </md-button>
+                                        <md-menu-content width="3">                                   
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">mode_edit</md-icon>  
+                                                        <p flex>Editar</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">chat</md-icon>  
+                                                        <p flex>Enviar Mensagem</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-divider></md-divider>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">delete</md-icon>  
+                                                        <p flex>Excluir</p>   
+                                                    </div>                                      
+                                                </md-button>  
+                                            </md-menu-item>              
+                                        </md-menu-content>
+                                    </md-menu>
+                            </md-card-icon-actions>
+                        </md-card-header>
+                        <md-card-title>   
+                          <div class="blur" style="background: url('http://placekitten.com/300/300') center center no-repeat; background-size: cover;"></div>              
+                            <md-card-header layout="column" layout-align="center center">
+                                <md-card-avatar>
+                                    <img class="md-user-avatar" src="http://placekitten.com/300/300">
+                                </md-card-avatar>
+                                <md-card-header-text flex layout-align="center center">
+                                <span class="md-headline">Israel Oliveira</span>
+                                <span class="md-title">UX Designer</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="start center">
+                            <md-chips>
+                                <md-chip>UX Team Designers</md-chip>                                            
+                            </md-chips>
+                            <md-card-icon-actions layout="row">
+                                <md-button class="menu" layout-align="end center" flex>
+                                    <md-icon class="material-icons">add_box</md-icon>
+                                </md-button>
+                                <md-switch flex layout-align="end center">                   
+                                </md-switch>
+                            </md-card-icon-actions>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </md-grid-tile>  
+            <md-grid-tile md-rowspan="2" md-colspan="2" md-rowspan-md="2">       
+                <div layout="column">
+                    <md-card>         
+                        <md-card-header>
+                            <md-card-avatar>
+                                <md-icon class="material-icons">mail</md-icon>
+                            </md-card-avatar>
+                            <span class="md-title" flex layout-padding>israel@leadlovers.com</span>
+                            <md-card-icon-actions layout-align="end center">
+                                <md-menu md-offset="-5 40" md-position-mode="target-right target">
+                                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">          
+                                            <md-icon md-menu-origin class="material-icons">more_vert</md-icon>
+                                        </md-button>
+                                        <md-menu-content width="3">                                   
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">mode_edit</md-icon>  
+                                                        <p flex>Editar</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">chat</md-icon>  
+                                                        <p flex>Enviar Mensagem</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-divider></md-divider>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">delete</md-icon>  
+                                                        <p flex>Excluir</p>   
+                                                    </div>                                      
+                                                </md-button>  
+                                            </md-menu-item>              
+                                        </md-menu-content>
+                                    </md-menu>
+                            </md-card-icon-actions>
+                        </md-card-header>
+                        <md-card-title>   
+                          <div class="blur" style="background: url('http://placekitten.com/300/300') center center no-repeat; background-size: cover;"></div>              
+                            <md-card-header layout="column" layout-align="center center">
+                                <md-card-avatar>
+                                    <img class="md-user-avatar" src="http://placekitten.com/300/300">
+                                </md-card-avatar>
+                                <md-card-header-text flex layout-align="center center">
+                                <span class="md-headline">Israel Oliveira</span>
+                                <span class="md-title">UX Designer</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="start center">
+                            <md-chips>
+                                <md-chip>UX Team Designers</md-chip>                                            
+                            </md-chips>
+                            <md-card-icon-actions layout="row">
+                                <md-button class="menu" layout-align="end center" flex>
+                                    <md-icon class="material-icons">add_box</md-icon>
+                                </md-button>
+                                <md-switch flex layout-align="end center">                   
+                                </md-switch>
+                            </md-card-icon-actions>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </md-grid-tile>  
+            <md-grid-tile md-rowspan="2" md-colspan="2" md-rowspan-md="2">       
+                <div layout="column">
+                    <md-card>         
+                        <md-card-header>
+                            <md-card-avatar>
+                                <md-icon class="material-icons">mail</md-icon>
+                            </md-card-avatar>
+                            <span class="md-title" flex layout-padding>israel@leadlovers.com</span>
+                            <md-card-icon-actions layout-align="end center">
+                                <md-menu md-offset="-5 40" md-position-mode="target-right target">
+                                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">          
+                                            <md-icon md-menu-origin class="material-icons">more_vert</md-icon>
+                                        </md-button>
+                                        <md-menu-content width="3">                                   
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">mode_edit</md-icon>  
+                                                        <p flex>Editar</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">chat</md-icon>  
+                                                        <p flex>Enviar Mensagem</p>   
+                                                    </div>                                      
+                                                </md-button>                                          
+                                            </md-menu-item>
+                                            <md-divider></md-divider>
+                                            <md-menu-item>
+                                                <md-button>                                            
+                                                    <div layout="row" flex>
+                                                        <md-icon class="material-icons">delete</md-icon>  
+                                                        <p flex>Excluir</p>   
+                                                    </div>                                      
+                                                </md-button>  
+                                            </md-menu-item>              
+                                        </md-menu-content>
+                                    </md-menu>
+                            </md-card-icon-actions>
+                        </md-card-header>
+                        <md-card-title>   
+                          <div class="blur" style="background: url('http://placekitten.com/300/300') center center no-repeat; background-size: cover;"></div>              
+                            <md-card-header layout="column" layout-align="center center">
+                                <md-card-avatar>
+                                    <img class="md-user-avatar" src="http://placekitten.com/300/300">
+                                </md-card-avatar>
+                                <md-card-header-text flex layout-align="center center">
+                                <span class="md-headline">Israel Oliveira</span>
+                                <span class="md-title">UX Designer</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                        </md-card-title>
+                        <md-card-actions layout="row" layout-align="start center">
+                            <md-chips>
+                                <md-chip>UX Team Designers</md-chip>                                            
+                            </md-chips>
+                            <md-card-icon-actions layout="row">
+                                <md-button class="menu" layout-align="end center" flex>
+                                    <md-icon class="material-icons">add_box</md-icon>
+                                </md-button>
+                                <md-switch flex layout-align="end center">                   
+                                </md-switch>
+                            </md-card-icon-actions>
+                        </md-card-actions>
+                    </md-card>
+                </div>
+            </md-grid-tile>              
+        </md-grid-list>
+    </md-content>
+</section>
+<script src="lib/angular.min.js"></script>  
+<script src="lib/angular-animate.min.js"></script>
+<script src="lib/angular-aria.min.js"></script>
+<script src="lib/angular-material.min.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
